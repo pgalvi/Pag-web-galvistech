@@ -1,0 +1,238 @@
+/* ==========================================
+   SCROLL ANIMATIONS & MICRO-INTERACTIONS
+   ========================================== */
+
+/* ===== FADE IN ANIMATIONS ===== */
+
+/* Initial state for fade-in elements */
+.fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.fade-in.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.fade-in.delay-3 {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== SCROLL FADE ANIMATIONS ===== */
+
+/* Initial hidden state */
+.scroll-fade {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Visible state (added by JavaScript) */
+.scroll-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delays for grid items */
+.services-grid .service-card:nth-child(1).visible {
+    transition-delay: 0s;
+}
+
+.services-grid .service-card:nth-child(2).visible {
+    transition-delay: 0.15s;
+}
+
+.services-grid .service-card:nth-child(3).visible {
+    transition-delay: 0.3s;
+}
+
+.why-grid .why-card:nth-child(1).visible {
+    transition-delay: 0s;
+}
+
+.why-grid .why-card:nth-child(2).visible {
+    transition-delay: 0.15s;
+}
+
+.why-grid .why-card:nth-child(3).visible {
+    transition-delay: 0.3s;
+}
+
+/* ===== GRADIENT ANIMATION ===== */
+
+.hero-background::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+    animation: rotateGradient 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotateGradient {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== HOVER GLOW EFFECT ===== */
+
+.service-card,
+.cta-button,
+.newsletter-button {
+    position: relative;
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+            var(--color-neon-blue),
+            var(--color-gold),
+            var(--color-neon-blue));
+    border-radius: var(--radius-2xl);
+    opacity: 0;
+    z-index: -1;
+    filter: blur(10px);
+    transition: opacity var(--transition-base);
+}
+
+.service-card:hover::after {
+    opacity: 0.3;
+}
+
+/* ===== SMOOTH FOCUS STATES ===== */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--color-neon-blue);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+}
+
+/* ===== LOADING ANIMATION (Optional) ===== */
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ===== SLIDE IN FROM SIDES ===== */
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ===== ICON ANIMATIONS ===== */
+
+.service-icon svg,
+.why-icon svg {
+    transition: transform var(--transition-base);
+}
+
+.service-card:hover .service-icon svg {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.why-card:hover .why-icon svg {
+    transform: scale(1.1);
+}
+
+/* ===== SHIMMER EFFECT ===== */
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.gradient-text {
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+}
+
+/* ===== ACCESSIBILITY: Respect Reduced Motion ===== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .fade-in,
+    .scroll-fade,
+    .hero-background::after,
+    .gradient-text {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .scroll-fade {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .fade-in {
+        opacity: 1;
+    }
+}

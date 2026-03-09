@@ -1,0 +1,113 @@
+/* Navigation Header Styles */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #FFFFFF;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: var(--z-sticky);
+    padding: var(--space-4) 0;
+    transition: all var(--transition-base);
+}
+
+.site-header .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.site-header.scrolled {
+    padding: var(--space-3) 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    transition: transform var(--transition-base);
+    cursor: pointer;
+    pointer-events: auto;
+    text-decoration: none;
+    position: relative;
+    z-index: 100;
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.logo-img {
+    height: 65px;
+    width: auto;
+    display: block;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.main-nav {
+    display: flex;
+    gap: var(--space-8);
+    align-items: center;
+}
+
+.nav-link {
+    font-size: var(--text-base);
+    font-weight: 500;
+    color: #1a1a1a;
+    position: relative;
+    padding: var(--space-2) 0;
+    transition: color var(--transition-base);
+    margin-right: 32px;
+}
+
+.nav-link:last-child {
+    margin-right: 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-brand-blue-dark) 0%, var(--color-brand-blue-light) 100%);
+    transition: width var(--transition-base);
+}
+
+.nav-link:hover {
+    color: #1a3d6b;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Adjust hero section for fixed header */
+.hero-section {
+    padding-top: calc(var(--space-20) + 70px);
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .logo-img {
+        height: 40px;
+    }
+
+    .main-nav {
+        gap: var(--space-4);
+    }
+
+    .nav-link {
+        font-size: var(--text-sm);
+    }
+}
