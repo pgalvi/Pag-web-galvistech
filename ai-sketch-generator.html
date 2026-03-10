@@ -73,40 +73,10 @@
 
                     <form id="aiGeneratorForm" class="space-y-6">
 
-                        <!-- Logo Upload -->
-                        <div>
-                            <label class="block text-sm font-semibold mb-3">
-                                1. Sube tu Logo (PNG transparente recomendado)
-                            </label>
-                            <div class="file-upload-area" id="logoUploadArea">
-                                <input type="file" id="logoInput" accept="image/png,image/jpeg,image/jpg,image/svg+xml"
-                                    class="hidden">
-                                <div class="file-upload-placeholder">
-                                    <svg class="w-12 h-12 mx-auto mb-3 text-blue-400" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                    </svg>
-                                    <p class="text-sm">Arrastra tu logo o <span class="text-blue-400 cursor-pointer">haz
-                                            clic aquí</span></p>
-                                    <p class="text-xs text-gray-400 mt-1">PNG, JPG, SVG (Max 2MB)</p>
-                                </div>
-                                <div id="logoPreview" class="logo-preview hidden">
-                                    <img id="logoPreviewImg" alt="Logo Preview">
-                                    <button type="button" id="removeLogo" class="remove-logo-btn">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Color Palette Picker -->
                         <div>
                             <label class="block text-sm font-semibold mb-3">
-                                2. Elige tu Paleta de Colores (Mínimo 3)
+                                1. Elige tu Paleta de Colores (Mínimo 3)
                             </label>
                             <div class="grid grid-cols-3 gap-4">
                                 <!-- Color 1 - Primary -->
@@ -136,7 +106,7 @@
                         <!-- Business Description -->
                         <div>
                             <label for="businessDesc" class="block text-sm font-semibold mb-3">
-                                3. ¿A qué se dedica tu negocio?
+                                2. ¿A qué se dedica tu negocio?
                             </label>
                             <textarea id="businessDesc" name="business_description" rows="4"
                                 placeholder="Ej: Agencia de marketing digital especializada en e-commerce para marcas de moda sustentable..."
@@ -147,7 +117,7 @@
                         <!-- Email Input -->
                         <div>
                             <label for="userEmail" class="block text-sm font-semibold mb-3">
-                                4. Tu Correo Corporativo
+                                3. Tu Correo Corporativo
                             </label>
                             <input type="email" id="userEmail" name="email" placeholder="nombre@tuempresa.com"
                                 class="custom-input" required>

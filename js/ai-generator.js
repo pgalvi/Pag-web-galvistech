@@ -7,11 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ========== VARIABLES ==========
     const form = document.getElementById('aiGeneratorForm');
-    const logoInput = document.getElementById('logoInput');
-    const logoUploadArea = document.getElementById('logoUploadArea');
-    const logoPreview = document.getElementById('logoPreview');
-    const logoPreviewImg = document.getElementById('logoPreviewImg');
-    const removeLogo = document.getElementById('removeLogo');
     const brandColor1 = document.getElementById('brandColor1');
     const brandColor2 = document.getElementById('brandColor2');
     const brandColor3 = document.getElementById('brandColor3');
@@ -26,82 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const placeholderState = document.getElementById('placeholderState');
     const resultState = document.getElementById('resultState');
-    const successMessage = document.getElementById('successMessage');
     const confirmEmail = document.getElementById('confirmEmail');
 
-    let userLogoDataUrl = null;
-
-    // ========== FILE UPLOAD HANDLING ==========
-
-    // Click to upload
-    logoUploadArea.addEventListener('click', function (e) {
-        if (!e.target.closest('#removeLogo')) {
-            logoInput.click();
-        }
-    });
-
-    // File input change
-    logoInput.addEventListener('change', function (e) {
-        handleLogoFile(e.target.files[0]);
-    });
-
-    // Drag and drop
-    logoUploadArea.addEventListener('dragover', function (e) {
-        e.preventDefault();
-        logoUploadArea.classList.add('drag-over');
-    });
-
-    logoUploadArea.addEventListener('draglea ve', function () {
-        logoUploadArea.classList.remove('drag-over');
-    });
-
-    logoUploadArea.addEventListener('drop', function (e) {
-        e.preventDefault();
-        logoUploadArea.classList.remove('drag-over');
-        handleLogoFile(e.dataTransfer.files[0]);
-    });
-
-    // Remove logo
-    removeLogo.addEventListener('click', function (e) {
-        e.stopPropagation();
-        resetLogoUpload();
-    });
-
-    // Handle logo file
-    function handleLogoFile(file) {
-        if (!file) return;
-
-        // Validate file type
-        const validTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'];
-        if (!validTypes.includes(file.type)) {
-            alert('⚠️ Por favor sube un archivo PNG, JPG o SVG');
-            return;
-        }
-
-        // Validate file size (2MB max)
-        if (file.size > 2 * 1024 * 1024) {
-            alert('⚠️ El archivo es muy grande. Máximo 2MB.');
-            return;
-        }
-
-        // Read file and display preview
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            userLogoDataUrl = e.target.result;
-            logoPreviewImg.src = userLogoDataUrl;
-            logoUploadArea.querySelector('.file-upload-placeholder').style.display = 'none';
-            logoPreview.classList.remove('hidden');
-        };
-        reader.readAsDataURL(file);
-    }
-
-    // Reset logo upload
-    function resetLogoUpload() {
-        logoInput.value = '';
-        userLogoDataUrl = null;
-        logoPreview.classList.add('hidden');
-        logoUploadArea.querySelector('.file-upload-placeholder').style.display = 'block';
-    }
 
     // ========== COLOR PICKERS ==========
 
@@ -130,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Collect form data
         const formData = {
-            logo: userLogoDataUrl,
             colors: [
                 brandColor1.value,
                 brandColor2.value,
@@ -152,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     email: formData.email,
                     descripcion_negocio: formData.description,
                     colores: formData.colors.join(', '),
-                    tiene_logo: !!formData.logo ? 'Sí' : 'No',
+                    tiene_logo: 'No',
                     fuente: 'Generador de IA - Galvis Tech'
                 })
             });
@@ -212,21 +132,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 switch (businessType) {
                     case 'ecommerce':
-                        sketchHTML = generateEcommerceSketch(formData, formData.colors, formData.logo);
+                        sketchHTML = generateEcommerceSketch(formData, formData.colors, null);
                         break;
                     case 'restaurant':
                     case 'food':
-                        sketchHTML = generateRestaurantSketch(formData, formData.colors, formData.logo);
+                        sketchHTML = generateRestaurantSketch(formData, formData.colors, null);
                         break;
                     case 'agency':
                     case 'marketing':
-                        sketchHTML = generateAgencySketch(formData, formData.colors, formData.logo);
+                        sketchHTML = generateAgencySketch(formData, formData.colors, null);
                         break;
                     case 'portfolio':
-                        sketchHTML = generatePortfolioSketch(formData, formData.colors, formData.logo);
+                        sketchHTML = generatePortfolioSketch(formData, formData.colors, null);
                         break;
                     default:
-                        sketchHTML = generateGenericSketch(formData, formData.colors, formData.logo);
+                        sketchHTML = generateGenericSketch(formData, formData.colors, null);
                 }
 
                 resolve({
@@ -316,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
             colors: formData.colors,
             description: formData.description,
             businessType: result.businessType,
-            hasLogo: !!formData.logo,
+            hasLogo: false,
             timestamp: new Date().toISOString()
         });
 
@@ -354,8 +274,8 @@ function prepareLeadData(formData, businessType) {
         businessDescription: formData.description,
         brandColors: formData.colors,
         businessType: businessType,
-        hasLogo: !!formData.logo,
-        logoDataUrl: formData.logo || null,
+        hasLogo: false,
+        logoDataUrl: null,
         createdAt: new Date().toISOString(),
         source: 'ai-sketch-generator',
         status: 'pending'
