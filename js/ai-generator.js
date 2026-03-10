@@ -140,6 +140,28 @@ document.addEventListener('DOMContentLoaded', function () {
             email: userEmail.value.trim()
         };
 
+        // Enviar datos a Formspree (Lead Capture)
+        const FORMSPREE_ID = "mwvrvgnw";
+        try {
+            await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: formData.email,
+                    descripcion_negocio: formData.description,
+                    colores: formData.colors.join(', '),
+                    tiene_logo: !!formData.logo ? 'Sí' : 'No',
+                    fuente: 'Generador de IA - Galvis Tech'
+                })
+            });
+            console.log('✅ Lead enviado a Formspree');
+        } catch (error) {
+            console.error('❌ Error enviando lead:', error);
+        }
+
         // Generate sketch
         try {
             const result = await generateDynamicSketch(formData);
