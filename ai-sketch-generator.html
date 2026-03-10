@@ -26,10 +26,10 @@
 
 <body class="bg-slate-900 text-white">
     <!-- Navigation Header -->
-    <header class="site-header">
+    <header class="site-header" style="z-index: 9999; position: fixed;">
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo-link">
+                <a href="index.html" class="logo-link" style="z-index: 10000; pointer-events: auto; display: block;">
                     <img src="assets/logo.png" alt="Galvis Tech Solutions" class="logo-img">
                 </a>
                 <nav class="main-nav">
@@ -48,8 +48,7 @@
             <!-- Hero Header -->
             <div class="text-center mb-16 fade-in">
                 <h1 class="text-5xl md:text-6xl font-bold mb-6">
-                    Visualiza tu <a href="index.html" class="gradient-text"
-                        style="text-decoration: none; cursor: pointer;">Sitio Web Ideal</a>
+                    Visualiza tu <span class="gradient-text">Sitio Web Ideal</span>
                 </h1>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-4">
                     Nuestra IA genera un concepto visual profesional de tu sitio web en segundos.
@@ -270,31 +269,7 @@
     </main>
 
 
-    <!-- NAVIGATION FIX - LOADS FIRST -->
-    <script>
-        (function () {
-            function nav(url) { window.location.href = url; }
 
-            window.addEventListener('load', function () {
-                const h = document.querySelector('.site-header');
-                if (!h) return;
-
-                // Logo
-                const logo = h.querySelector('.logo-link');
-                if (logo) {
-                    logo.onclick = function (e) { e.preventDefault(); e.stopPropagation(); nav('index.html'); return false; };
-                    logo.style.cursor = 'pointer';
-                }
-
-                // Nav links
-                h.querySelectorAll('.nav-link').forEach(function (link) {
-                    const url = link.getAttribute('href');
-                    link.onclick = function (e) { e.preventDefault(); e.stopPropagation(); nav(url); return false; };
-                    link.style.cursor = 'pointer';
-                });
-            });
-        })();
-    </script>
 
     <!-- JavaScript -->
     <script src="js/sketch-templates.js"></script>

@@ -162,6 +162,104 @@ if ('IntersectionObserver' in window) {
     });
 }
 
+// ===== CONTACT FORM LOGIC (Senior Frontend Implementation) =====
+
+const contactForm = document.getElementById('contactForm');
+const contactSuccess = document.getElementById('contactSuccess');
+const FORMSPREE_ID = "mwvrvgnw"; // Tu ID de Formspree
+
+if (contactForm) {
+    const inputs = contactForm.querySelectorAll('input, select, textarea');
+
+    // Real-time validation
+    inputs.forEach(input => {
+        input.addEventListener('blur', () => validateField(input));
+        input.addEventListener('input', () => {
+            if (input.parentElement.classList.contains('has-error')) {
+                validateField(input);
+            }
+        });
+    });
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Final validation check
+        let isFormValid = true;
+        inputs.forEach(input => {
+            if (!validateField(input)) isFormValid = false;
+        });
+
+        if (!isFormValid) return;
+
+        // UI States
+        const submitBtn = document.getElementById('contactSubmit');
+        const btnText = submitBtn.querySelector('.btn-text');
+        const btnLoader = submitBtn.querySelector('.btn-loader');
+
+        submitBtn.disabled = true;
+        btnText.classList.add('hidden');
+        btnLoader.classList.remove('hidden');
+
+        try {
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+
+            const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                contactForm.classList.add('hidden');
+                contactSuccess.classList.remove('hidden');
+                contactForm.reset();
+            } else {
+                throw new Error('Error en el envío');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('❌ Lo sentimos, hubo un problema al enviar tu mensaje. Por favor intenta de nuevo.');
+        } finally {
+            submitBtn.disabled = false;
+            btnText.classList.remove('hidden');
+            btnLoader.classList.add('hidden');
+        }
+    });
+}
+
+function validateField(input) {
+    const group = input.parentElement;
+    let isValid = true;
+
+    if (input.required && !input.value.trim()) {
+        isValid = false;
+    } else if (input.type === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        isValid = emailRegex.test(input.value.trim());
+    }
+
+    if (!isValid) {
+        group.classList.add('has-error');
+    } else {
+        group.classList.remove('has-error');
+    }
+
+    return isValid;
+}
+
+// Global function to reset form view
+window.resetContactForm = function () {
+    contactForm.classList.remove('hidden');
+    contactSuccess.classList.add('hidden');
+    // Scroll a la parte superior del formulario
+    contactForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+};
+
 // ===== CONSOLE EASTER EGG =====
 
 console.log('%c¡Hola Developer! 👋', 'color: #D4AF37; font-size: 20px; font-weight: bold;');

@@ -7,7 +7,7 @@
     background: #FFFFFF;
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    z-index: var(--z-sticky);
+    z-index: 1000; /* Ensura always on top across all pages */
     padding: var(--space-4) 0;
     transition: all var(--transition-base);
 }

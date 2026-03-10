@@ -26,7 +26,7 @@
     <header class="site-header">
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo-link" onclick="window.location.href='index.html'; return false;">
+                <a href="index.html" class="logo-link">
                     <img src="assets/logo.png" alt="Galvis Tech Solutions" class="logo-img">
                 </a>
                 <nav class="main-nav">
@@ -216,8 +216,133 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contacto" class="contact-section">
+        <div class="container overflow-visible">
+            <h2 class="section-title scroll-fade">Hablemos de tu Proyecto</h2>
+            <p class="section-subtitle scroll-fade">Estamos listos para transformar tu visión en una realidad digital de
+                clase mundial.</p>
+
+            <div class="contact-container scroll-fade">
+                <div class="contact-grid">
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <path d="m22 6-10 7L2 6" />
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <h3>Email</h3>
+                                <p>contacto@galvistech.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div class="info-content">
+                                <h3>Ubicación</h3>
+                                <p>Servicio global</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-wrapper">
+                        <form id="contactForm" class="contact-form" novalidate>
+                            <div class="form-group">
+                                <label for="name">Nombre Completo</label>
+                                <input type="text" id="name" name="name" placeholder="Ej: Juan Pérez" required
+                                    aria-describedby="nameError">
+                                <span class="error-message" id="nameError">Por favor ingresa tu nombre</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Corporativo</label>
+                                <input type="email" id="email" name="email" placeholder="juan@empresa.com" required
+                                    aria-describedby="emailError">
+                                <span class="error-message" id="emailError">Ingresa un email válido</span>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="projectType">Tipo de Proyecto</label>
+                                    <select id="projectType" name="project_type" required>
+                                        <option value="" disabled selected>Selecciona una opción</option>
+                                        <option value="landing">Landing Page</option>
+                                        <option value="ecommerce">E-commerce</option>
+                                        <option value="corporate">Web Corporativa</option>
+                                        <option value="software">Software a Medida</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="budget">Presupuesto Estimado</label>
+                                    <select id="budget" name="budget">
+                                        <option value="" disabled selected>Rango de presupuesto</option>
+                                        <option value="low">
+                                            < $500 USD</option>
+                                        <option value="mid">$500 - $2,000 USD</option>
+                                        <option value="high">$2,000 - $5,000 USD</option>
+                                        <option value="premium">> $5,000 USD</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Mensaje / Detalles del Proyecto</label>
+                                <textarea id="message" name="message" rows="4" placeholder="¿Cómo podemos ayudarte?"
+                                    required></textarea>
+                            </div>
+
+                            <button type="submit" id="contactSubmit" class="cta-button w-full justify-center">
+                                <span class="btn-text">Enviar Mensaje</span>
+                                <span class="btn-loader hidden">
+                                    <svg class="animate-spin" width="20" height="20" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                            stroke-width="4" fill="none"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                        </path>
+                                    </svg>
+                                    Enviando...
+                                </span>
+                            </button>
+                        </form>
+
+                        <!-- Success Message -->
+                        <div id="contactSuccess" class="contact-success hidden">
+                            <div class="success-icon">
+                                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#10B981"
+                                    stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                    <polyline points="22 4 12 14.01 9 11.01" />
+                                </svg>
+                            </div>
+                            <h3>¡Mensaje Recibido!</h3>
+                            <p>Gracias por contactarnos. Un consultor experto revisará tu propuesta y te responderá en
+                                menos
+                                de 12 horas.</p>
+                            <button type="button" onclick="resetContactForm()" class="text-link mt-4">Enviar otro
+                                mensaje</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer id="contacto" class="footer">
+    <footer id="footer-info" class="footer">
         <div class="container">
             <div class="footer-grid">
                 <!-- Company Info -->
