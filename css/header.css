@@ -111,3 +111,42 @@
         font-size: var(--text-sm);
     }
 }
+
+/* Lang Styles */
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 8px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.lang-btn {
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    padding: 2px 6px;
+    transition: all 0.2s;
+    border-radius: 4px;
+}
+
+.lang-btn.active {
+    color: #1a3d6b !important;
+    font-weight: 700;
+}
+
+.lang-btn:hover:not(.active) {
+    color: #1a3d6b;
+}
+
+.lang-separator {
+    color: #ccc;
+    font-size: 0.8rem;
+    user-select: none;
+}

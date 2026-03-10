@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/animations.css">
+    <script src="js/i18n.js" defer></script>
 </head>
 
 <body>
@@ -30,9 +31,9 @@
                     <img src="assets/logo.png" alt="Galvis Tech Solutions" class="logo-img">
                 </a>
                 <nav class="main-nav">
-                    <a href="#servicios" class="nav-link">Servicios</a>
-                    <a href="#por-que-elegirnos" class="nav-link">Nosotros</a>
-                    <a href="#contacto" class="nav-link">Contacto</a>
+                    <a href="#servicios" class="nav-link" data-i18n="nav_services">Servicios</a>
+                    <a href="#por-que-elegirnos" class="nav-link" data-i18n="nav_about">Nosotros</a>
+                    <a href="#contacto" class="nav-link" data-i18n="nav_contact">Contacto</a>
                 </nav>
             </div>
         </div>
@@ -41,10 +42,10 @@
     <!-- Hero Section -->
     <section id="hero" class="hero-section">
         <div class="hero-content">
-            <h1 class="hero-title fade-in">
+            <h1 class="hero-title fade-in" data-i18n="hero_title">
                 Elevamos tu Negocio con Soluciones Digitales de <span class="gradient-text">Alta Gama</span>
             </h1>
-            <p class="hero-subtitle fade-in delay-1">
+            <p class="hero-subtitle fade-in delay-1" data-i18n="hero_subtitle">
                 Desarrollo Web, E-commerce y Estrategia Digital para marcas que exigen excelencia
             </p>
             <div style="display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;"
@@ -56,10 +57,10 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                    Ver mi Web con IA
+                    <span data-i18n="hero_ai_cta">Ver mi Web con IA</span>
                 </a>
                 <a href="#contacto" class="cta-button">
-                    Cotizar Proyecto
+                    <span data-i18n="hero_quote_cta">Cotizar Proyecto</span>
                     <svg class="cta-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M4 10H16M16 10L10 4M16 10L10 16" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" />
@@ -73,8 +74,8 @@
     <!-- Services Section -->
     <section id="servicios" class="services-section">
         <div class="container">
-            <h2 class="section-title scroll-fade">Nuestros Servicios</h2>
-            <p class="section-subtitle scroll-fade">Soluciones digitales que transforman tu negocio</p>
+            <h2 class="section-title scroll-fade" data-i18n="section_services_title">Nuestros Servicios</h2>
+            <p class="section-subtitle scroll-fade" data-i18n="section_services_subtitle">Soluciones digitales que transforman tu negocio</p>
 
             <div class="services-grid">
                 <!-- Service Card 1 -->
@@ -86,8 +87,8 @@
                             <path d="M9 4v16M15 4v16" stroke-linecap="round" />
                         </svg>
                     </div>
-                    <h3 class="service-title">Diseño Web Nativo & Corporativo</h3>
-                    <p class="service-description">
+                    <h3 class="service-title" data-i18n="service_1_title">Diseño Web Nativo & Corporativo</h3>
+                    <p class="service-description" data-i18n="service_1_desc">
                         Landing pages y sitios corporativos desarrollados línea por línea para una velocidad y seguridad
                         inigualables. Nos alejamos de las plantillas y los constructores visuales; creamos arquitecturas
                         digitales únicas con código puro, garantizando un rendimiento técnico perfecto y una libertad de
@@ -106,8 +107,8 @@
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <h3 class="service-title">Ingeniería E-commerce a Medida</h3>
-                    <p class="service-description">
+                    <h3 class="service-title" data-i18n="service_2_title">Ingeniería E-commerce a Medida</h3>
+                    <p class="service-description" data-i18n="service_2_desc">
                         Tiendas online robustas construidas desde cero, libres de las limitaciones y comisiones de
                         plataformas prefabricadas (como Shopify o Wix). Desarrollamos su motor de ventas con tecnología
                         propia para otorgarle control total, escalabilidad real y una experiencia de compra optimizada
@@ -126,8 +127,8 @@
                                 stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <h3 class="service-title">Desarrollo de Software & Apps Propias</h3>
-                    <p class="service-description">
+                    <h3 class="service-title" data-i18n="service_3_title">Desarrollo de Software & Apps Propias</h3>
+                    <p class="service-description" data-i18n="service_3_desc">
                         Soluciones digitales y aplicaciones web creadas específicamente para la lógica de su negocio,
                         sin depender de plugins de terceros. Entregamos software de propiedad exclusiva, con una
                         arquitectura de código limpia, segura y diseñada para evolucionar al ritmo de su empresa.
@@ -140,22 +141,22 @@
     <!-- Why Choose Us Section -->
     <section id="por-que-elegirnos" class="why-section">
         <div class="container">
-            <h2 class="section-title scroll-fade">Por Qué Elegirnos</h2>
-            <p class="section-subtitle scroll-fade">La diferencia que impulsa resultados excepcionales</p>
+            <h2 class="section-title scroll-fade" data-i18n="section_why_title">Por Qué Elegirnos</h2>
+            <p class="section-subtitle scroll-fade" data-i18n="section_why_subtitle">La diferencia que impulsa resultados excepcionales</p>
 
             <div class="about-description scroll-fade">
-                <p class="about-text">
+                <p class="about-text" data-i18n="about_text_1">
                     En Galvis Tech Solutions, entendemos que una presencia web es la extensión más pura de su marca.
                     Por ello, hemos perfeccionado una metodología que fusiona la estética impecable con una eficiencia
                     absoluta. No solo creamos ecosistemas digitales a medida; respetamos el valor de su tiempo
                     garantizando entregas finales ágiles y precisas.
                 </p>
-                <p class="about-text">
+                <p class="about-text" data-i18n="about_text_2">
                     Sabemos que la visión de un líder no puede esperar. Como parte de nuestro compromiso con la
                     excelencia y la inmediatez, le ofrecemos una <strong>Visualización Preliminar Express</strong>:
                     en menos de 24 horas, recibirá un boceto conceptual exclusivo de cómo lucirá su proyecto.
                 </p>
-                <p class="about-text">
+                <p class="about-text" data-i18n="about_text_3">
                     Permítanos transformar sus ideas en una experiencia digital sofisticada, funcional y lista para
                     el mercado en tiempo récord.
                 </p>
@@ -174,8 +175,8 @@
                                 stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <h3 class="why-title">Atención Personalizada</h3>
-                    <p class="why-description">
+                    <h3 class="why-title" data-i18n="why_1_title">Atención Personalizada</h3>
+                    <p class="why-description" data-i18n="why_1_desc">
                         Tu proyecto merece atención dedicada, no un número en la fila. Trabajamos contigo en cada etapa.
                     </p>
                 </div>
@@ -190,8 +191,8 @@
                             <path d="M11 8v6M14 11H8" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <h3 class="why-title">Código Limpio Optimizado para Google</h3>
-                    <p class="why-description">
+                    <h3 class="why-title" data-i18n="why_2_title">Código Limpio Optimizado para Google</h3>
+                    <p class="why-description" data-i18n="why_2_desc">
                         SEO-ready desde el primer día. Rankings que importan, velocidad que convierte, estructura que
                         escala.
                     </p>
@@ -207,8 +208,8 @@
                             <polyline points="22 4 12 14.01 9 11.01" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <h3 class="why-title">Diseño Centrado en Ventas</h3>
-                    <p class="why-description">
+                    <h3 class="why-title" data-i18n="why_3_title">Diseño Centrado en Ventas</h3>
+                    <p class="why-description" data-i18n="why_3_desc">
                         Cada pixel diseñado para convertir, no solo para verse bien. UX basado en datos, CRO integrado.
                     </p>
                 </div>
@@ -219,8 +220,8 @@
     <!-- Contact Section -->
     <section id="contacto" class="contact-section">
         <div class="container overflow-visible">
-            <h2 class="section-title scroll-fade">Hablemos de tu Proyecto</h2>
-            <p class="section-subtitle scroll-fade">Estamos listos para transformar tu visión en una realidad digital de
+            <h2 class="section-title scroll-fade" data-i18n="section_contact_title">Hablemos de tu Proyecto</h2>
+            <p class="section-subtitle scroll-fade" data-i18n="section_contact_subtitle">Estamos listos para transformar tu visión en una realidad digital de
                 clase mundial.</p>
 
             <div class="contact-container scroll-fade">
@@ -261,34 +262,34 @@
                     <div class="contact-form-wrapper">
                         <form id="contactForm" class="contact-form" novalidate>
                             <div class="form-group">
-                                <label for="name">Nombre Completo</label>
-                                <input type="text" id="name" name="name" placeholder="Ej: Juan Pérez" required
+                                <label for="name" data-i18n="contact_label_name">Nombre Completo</label>
+                                <input type="text" id="name" name="name" data-i18n="contact_placeholder_name" placeholder="Ej: Juan Pérez" required
                                     aria-describedby="nameError">
                                 <span class="error-message" id="nameError">Por favor ingresa tu nombre</span>
                             </div>
 
                             <div class="form-group">
-                                <label for="email">Email Corporativo</label>
-                                <input type="email" id="email" name="email" placeholder="juan@empresa.com" required
+                                <label for="email" data-i18n="contact_label_email">Email Corporativo</label>
+                                <input type="email" id="email" name="email" data-i18n="contact_placeholder_email" placeholder="juan@empresa.com" required
                                     aria-describedby="emailError">
                                 <span class="error-message" id="emailError">Ingresa un email válido</span>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="projectType">Tipo de Proyecto</label>
-                                    <select id="projectType" name="project_type" required>
-                                        <option value="" disabled selected>Selecciona una opción</option>
-                                        <option value="landing">Landing Page</option>
-                                        <option value="ecommerce">E-commerce</option>
-                                        <option value="corporate">Web Corporativa</option>
-                                        <option value="software">Software a Medida</option>
+                                    <label for="projectType" data-i18n="contact_label_project">Tipo de Proyecto</label>
+                                    <select id="projectType" name="project_type" required data-i18n-options>
+                                        <option value="" disabled selected data-i18n-key="contact_option_select">Selecciona una opción</option>
+                                        <option value="landing" data-i18n-key="contact_option_landing">Landing Page</option>
+                                        <option value="ecommerce" data-i18n-key="contact_option_ecommerce">E-commerce</option>
+                                        <option value="corporate" data-i18n-key="contact_option_corporate">Web Corporativa</option>
+                                        <option value="software" data-i18n-key="contact_option_software">Software a Medida</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="budget">Presupuesto Estimado</label>
-                                    <select id="budget" name="budget">
-                                        <option value="" disabled selected>Rango de presupuesto</option>
+                                    <label for="budget" data-i18n="contact_label_budget">Presupuesto Estimado</label>
+                                    <select id="budget" name="budget" data-i18n-options>
+                                        <option value="" disabled selected data-i18n-key="contact_option_budget">Rango de presupuesto</option>
                                         <option value="low">
                                             < $500 USD</option>
                                         <option value="mid">$500 - $2,000 USD</option>
@@ -299,13 +300,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="message">Mensaje / Detalles del Proyecto</label>
-                                <textarea id="message" name="message" rows="4" placeholder="¿Cómo podemos ayudarte?"
+                                <label for="message" data-i18n="contact_label_message">Mensaje / Detalles del Proyecto</label>
+                                <textarea id="message" name="message" rows="4" data-i18n="contact_placeholder_message" placeholder="¿Cómo podemos ayudarte?"
                                     required></textarea>
                             </div>
 
                             <button type="submit" id="contactSubmit" class="cta-button w-full justify-center">
-                                <span class="btn-text">Enviar Mensaje</span>
+                                <span class="btn-text" data-i18n="contact_btn_send">Enviar Mensaje</span>
                                 <span class="btn-loader hidden">
                                     <svg class="animate-spin" width="20" height="20" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
@@ -314,7 +315,7 @@
                                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                         </path>
                                     </svg>
-                                    Enviando...
+                                    <span data-i18n="contact_btn_sending">Enviando...</span>
                                 </span>
                             </button>
                         </form>
@@ -328,11 +329,11 @@
                                     <polyline points="22 4 12 14.01 9 11.01" />
                                 </svg>
                             </div>
-                            <h3>¡Mensaje Recibido!</h3>
-                            <p>Gracias por contactarnos. Un consultor experto revisará tu propuesta y te responderá en
+                            <h3 data-i18n="contact_success_title">¡Mensaje Recibido!</h3>
+                            <p data-i18n="contact_success_desc">Gracias por contactarnos. Un consultor experto revisará tu propuesta y te responderá en
                                 menos
                                 de 12 horas.</p>
-                            <button type="button" onclick="resetContactForm()" class="text-link mt-4">Enviar otro
+                            <button type="button" onclick="resetContactForm()" class="text-link mt-4" data-i18n="contact_success_reset">Enviar otro
                                 mensaje</button>
                         </div>
                     </div>
@@ -348,12 +349,12 @@
                 <!-- Company Info -->
                 <div class="footer-column">
                     <h3 class="footer-brand">Galvis Tech Solutions</h3>
-                    <p class="footer-tagline">Soluciones digitales de alta gama</p>
+                    <p class="footer-tagline" data-i18n="footer_tagline">Soluciones digitales de alta gama</p>
                 </div>
 
                 <!-- Quick Links -->
                 <div class="footer-column">
-                    <h4 class="footer-heading">Enlaces Rápidos</h4>
+                    <h4 class="footer-heading" data-i18n="footer_links_title">Enlaces Rápidos</h4>
                     <ul class="footer-links">
                         <li><a href="#servicios">Servicios</a></li>
                         <li><a href="#por-que-elegirnos">Nosotros</a></li>
@@ -363,17 +364,17 @@
 
                 <!-- Contact Form -->
                 <div class="footer-column">
-                    <h4 class="footer-heading">Mantente Informado</h4>
+                    <h4 class="footer-heading" data-i18n="footer_newsletter_title">Mantente Informado</h4>
                     <form class="newsletter-form" id="newsletterForm">
-                        <input type="email" name="email" placeholder="tu@email.com" class="newsletter-input" required>
-                        <button type="submit" class="newsletter-button">Suscribirse</button>
+                        <input type="email" name="email" data-i18n="footer_newsletter_placeholder" placeholder="tu@email.com" class="newsletter-input" required>
+                        <button type="submit" class="newsletter-button" data-i18n="footer_newsletter_btn">Suscribirse</button>
                     </form>
                 </div>
             </div>
 
             <!-- Copyright -->
             <div class="footer-bottom">
-                <p class="copyright">© 2026 Galvis Tech Solutions. Todos los derechos reservados.</p>
+                <p class="copyright" data-i18n="footer_copyright">© 2026 Galvis Tech Solutions. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>

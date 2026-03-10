@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/ai-generator.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/animations.css">
+    <script src="js/i18n.js" defer></script>
 </head>
 
 <body class="bg-slate-900 text-white">
@@ -33,9 +34,9 @@
                     <img src="assets/logo.png" alt="Galvis Tech Solutions" class="logo-img">
                 </a>
                 <nav class="main-nav">
-                    <a href="index.html#servicios" class="nav-link">Servicios</a>
-                    <a href="index.html#por-que-elegirnos" class="nav-link">Nosotros</a>
-                    <a href="index.html#contacto" class="nav-link">Contacto</a>
+                    <a href="index.html#servicios" class="nav-link" data-i18n="nav_services">Servicios</a>
+                    <a href="index.html#por-que-elegirnos" class="nav-link" data-i18n="nav_about">Nosotros</a>
+                    <a href="index.html#contacto" class="nav-link" data-i18n="nav_contact">Contacto</a>
                 </nav>
             </div>
         </div>
@@ -47,13 +48,13 @@
 
             <!-- Hero Header -->
             <div class="text-center mb-16 fade-in">
-                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6" data-i18n="ai_hero_title">
                     Visualiza tu <span class="gradient-text">Sitio Web Ideal</span>
                 </h1>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-4">
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-4" data-i18n="ai_hero_subtitle">
                     Nuestra IA genera un concepto visual profesional de tu sitio web en segundos.
                 </p>
-                <p class="text-lg text-blue-400 font-semibold">
+                <p class="text-lg text-blue-400 font-semibold" data-i18n="ai_hero_badge">
                     ✨ Recibe tu boceto preliminar en menos de 24 horas
                 </p>
             </div>
@@ -68,34 +69,34 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
-                        Datos de tu Proyecto
+                        <span data-i18n="ai_form_title">Datos de tu Proyecto</span>
                     </h2>
 
                     <form id="aiGeneratorForm" class="space-y-6">
 
                         <!-- Color Palette Picker -->
                         <div>
-                            <label class="block text-sm font-semibold mb-3">
+                            <label class="block text-sm font-semibold mb-3" data-i18n="ai_step_1">
                                 1. Elige tu Paleta de Colores (Mínimo 3)
                             </label>
                             <div class="grid grid-cols-3 gap-4">
                                 <!-- Color 1 - Primary -->
                                 <div class="text-center">
-                                    <label for="brandColor1" class="block text-xs text-gray-400 mb-2">Principal</label>
+                                    <label for="brandColor1" class="block text-xs text-gray-400 mb-2" data-i18n="ai_color_primary">Principal</label>
                                     <input type="color" id="brandColor1" value="#2196F3" class="color-input mx-auto">
                                     <span id="colorHex1"
                                         class="text-xs font-mono text-gray-300 block mt-2">#2196F3</span>
                                 </div>
                                 <!-- Color 2 - Secondary -->
                                 <div class="text-center">
-                                    <label for="brandColor2" class="block text-xs text-gray-400 mb-2">Secundario</label>
+                                    <label for="brandColor2" class="block text-xs text-gray-400 mb-2" data-i18n="ai_color_secondary">Secundario</label>
                                     <input type="color" id="brandColor2" value="#10B981" class="color-input mx-auto">
                                     <span id="colorHex2"
                                         class="text-xs font-mono text-gray-300 block mt-2">#10B981</span>
                                 </div>
                                 <!-- Color 3 - Accent -->
                                 <div class="text-center">
-                                    <label for="brandColor3" class="block text-xs text-gray-400 mb-2">Acento</label>
+                                    <label for="brandColor3" class="block text-xs text-gray-400 mb-2" data-i18n="ai_color_accent">Acento</label>
                                     <input type="color" id="brandColor3" value="#F59E0B" class="color-input mx-auto">
                                     <span id="colorHex3"
                                         class="text-xs font-mono text-gray-300 block mt-2">#F59E0B</span>
@@ -105,23 +106,23 @@
 
                         <!-- Business Description -->
                         <div>
-                            <label for="businessDesc" class="block text-sm font-semibold mb-3">
+                            <label for="businessDesc" class="block text-sm font-semibold mb-3" data-i18n="ai_step_2">
                                 2. ¿A qué se dedica tu negocio?
                             </label>
                             <textarea id="businessDesc" name="business_description" rows="4"
-                                placeholder="Ej: Agencia de marketing digital especializada en e-commerce para marcas de moda sustentable..."
+                                data-i18n="ai_placeholder_desc" placeholder="Ej: Agencia de marketing digital especializada en e-commerce para marcas de moda sustentable..."
                                 class="custom-input" required></textarea>
-                            <p class="text-xs text-gray-400 mt-2">Mínimo 20 caracteres</p>
+                            <p class="text-xs text-gray-400 mt-2" data-i18n="ai_desc_hint">Mínimo 20 caracteres</p>
                         </div>
 
                         <!-- Email Input -->
                         <div>
-                            <label for="userEmail" class="block text-sm font-semibold mb-3">
+                            <label for="userEmail" class="block text-sm font-semibold mb-3" data-i18n="ai_step_3">
                                 3. Tu Correo Corporativo
                             </label>
-                            <input type="email" id="userEmail" name="email" placeholder="nombre@tuempresa.com"
+                            <input type="email" id="userEmail" name="email" data-i18n="ai_placeholder_email" placeholder="nombre@tuempresa.com"
                                 class="custom-input" required>
-                            <p class="text-xs text-gray-400 mt-2">
+                            <p class="text-xs text-gray-400 mt-2" data-i18n="ai_email_hint">
                                 🔒 Necesario para enviarte el concepto completo en 24h
                             </p>
                         </div>
@@ -134,7 +135,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 10V3L4 14h7v7l9-11h-7z" />
                                 </svg>
-                                Generar Concepto con IA
+                                <span data-i18n="ai_btn_generate">Generar Concepto con IA</span>
                             </span>
                             <span id="btnLoading" class="hidden">
                                 <svg class="animate-spin w-5 h-5 inline-block mr-2" fill="none" viewBox="0 0 24 24">
@@ -144,7 +145,7 @@
                                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                     </path>
                                 </svg>
-                                Generando...
+                                <span data-i18n="ai_btn_generating">Generando...</span>
                             </span>
                         </button>
 
@@ -158,7 +159,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        Vista Previa
+                        <span data-i18n="ai_preview_title">Vista Previa</span>
                     </h2>
 
                     <!-- Browser Mockup -->
@@ -189,7 +190,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
-                                <p class="text-gray-400 text-center">
+                                <p class="text-gray-400 text-center" data-i18n="ai_preview_placeholder">
                                     Completa el formulario para generar<br>tu concepto web personalizado
                                 </p>
                             </div>
@@ -214,8 +215,8 @@
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             <div>
-                                <h3 class="font-semibold text-green-400 mb-1">¡Concepto Generado!</h3>
-                                <p class="text-sm text-gray-300">
+                                <h3 class="font-semibold text-green-400 mb-1" data-i18n="ai_success_title">¡Concepto Generado!</h3>
+                                <p class="text-sm text-gray-300" data-i18n="ai_success_desc">
                                     Revisa el boceto arriba. Te enviaremos el concepto completo y refinado a <span
                                         id="confirmEmail" class="text-blue-400 font-semibold"></span> en menos de 24
                                     horas.
@@ -230,7 +231,7 @@
 
             <!-- Bottom Info Section -->
             <div class="text-center mt-16 fade-in delay-3">
-                <p class="text-gray-400 text-sm">
+                <p class="text-gray-400 text-sm" data-i18n="ai_footer_lock">
                     🔐 Tus datos están seguros. Solo usamos tu información para contactarte sobre tu proyecto.
                 </p>
             </div>
