@@ -134,6 +134,10 @@ body {
     overflow-x: hidden;
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 /* ===== TYPOGRAPHY ===== */
 h1,
 h2,
@@ -780,53 +784,73 @@ a {
     color: var(--color-gray-300);
 }
 
-/* ===== RESPONSIVE BREAKPOINTS ===== */
+/* Responsive Breakpoints & Mobile Optimization */
 
-/* Tablet (768px) */
-@media (min-width: 768px) {
+@media (max-width: 1024px) {
+    .services-grid, .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --space-16: 3rem;
+        --space-20: 3.5rem;
+        --space-24: 4rem;
+    }
+
     .hero-title {
-        font-size: var(--text-5xl);
+        font-size: var(--text-4xl);
     }
 
     .hero-subtitle {
-        font-size: var(--text-xl);
+        font-size: var(--text-lg);
     }
 
     .section-title {
-        font-size: var(--text-5xl);
-    }
-}
-
-/* Desktop (1024px) */
-@media (min-width: 1024px) {
-    .hero-title {
-        font-size: var(--text-6xl);
+        font-size: var(--text-3xl);
     }
 
-    .services-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .section-subtitle {
+        font-size: var(--text-lg);
+        margin-bottom: var(--space-8);
     }
 
-    .why-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Responsive Overrides */
-@media (max-width: 900px) {
-    .contact-grid {
+    .services-grid, .why-grid {
         grid-template-columns: 1fr;
-        gap: var(--space-12);
     }
 
     .contact-container {
-        padding: var(--space-8);
+        padding: var(--space-6);
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-10);
+    }
+    
+    .hero-section {
+        padding-top: var(--space-24);
+        text-align: center;
+    }
+
+    .hero-subtitle {
+        max-width: 100%;
     }
 }
 
-@media (max-width: 600px) {
-    .form-row {
-        grid-template-columns: 1fr;
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: var(--text-3xl);
+    }
+
+    .cta-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .service-card {
+        padding: var(--space-6);
     }
 }
 

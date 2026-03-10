@@ -2,6 +2,28 @@
 // GALVIS TECH SOLUTIONS - INTERACTIONS
 // ==========================================
 
+// ===== MOBILE NAVIGATION TOGGLE =====
+
+const navToggle = document.getElementById('navToggle');
+const mainNav = document.getElementById('mainNav');
+
+if (navToggle && mainNav) {
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        mainNav.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    });
+
+    // Close menu when clicking links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navToggle.classList.remove('active');
+            mainNav.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+    });
+}
+
 // ===== SCROLL ANIMATIONS =====
 
 // Intersection Observer for scroll-triggered animations
