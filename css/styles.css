@@ -504,7 +504,6 @@ a {
 .info-content p {
     color: var(--color-gray-300);
     font-size: var(--text-base);
-    word-break: break-all;
     overflow-wrap: break-word;
 }
 
@@ -852,6 +851,10 @@ a {
     .form-row {
         grid-template-columns: 1fr;
         gap: var(--space-6);
+    }
+
+    .info-content p {
+        font-size: var(--text-sm);
     }
     
     .hero-section {
