@@ -203,9 +203,17 @@ if (contactForm) {
 
         try {
             const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData.entries());
+            
+            // Mapeo de campos del Frontend a los campos esperados por el Backend Senior
+            const data = {
+                nombre_completo: formData.get('name'),
+                email_corporativo: formData.get('email'),
+                tipo_proyecto: formData.get('project_type'),
+                presupuesto_estimado: formData.get('budget'),
+                mensaje: formData.get('message')
+            };
 
-            const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+            const response = await fetch('./contacto.php', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -219,11 +227,11 @@ if (contactForm) {
                 contactSuccess.classList.remove('hidden');
                 contactForm.reset();
             } else {
-                throw new Error('Error en el envío');
+                throw new Error('Error en el servidor de Galvis Tech');
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('❌ Lo sentimos, hubo un problema al enviar tu mensaje. Por favor intenta de nuevo.');
+            alert('❌ Lo sentimos, hubo un problema al enviar tu mensaje. ¿Está el servidor activo?');
         } finally {
             submitBtn.disabled = false;
             btnText.classList.remove('hidden');

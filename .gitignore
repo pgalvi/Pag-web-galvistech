@@ -4,6 +4,7 @@ node_modules/
 # Archivos de entorno y secretos (¡MUY IMPORTANTE!)
 .env
 .env.local
+server/.env
 config.php (si contiene contraseñas)
 
 # Archivos del sistema
