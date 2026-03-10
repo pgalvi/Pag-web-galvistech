@@ -40,66 +40,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== NEWSLETTER FORM HANDLING =====
-
-const newsletterForm = document.getElementById('newsletterForm');
-
-if (newsletterForm) {
-    newsletterForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const emailInput = newsletterForm.querySelector('input[type="email"]');
-        const button = newsletterForm.querySelector('button');
-        const email = emailInput.value;
-        const originalText = button.textContent;
-
-        // REEMPLAZA ESTO CON TU ID DE FORMSPREE
-        const FORMSPREE_ID = "mwvrvgnw";
-
-        if (email && email.includes('@')) {
-            // Bloquear botón y mostrar carga
-            button.disabled = true;
-            button.textContent = 'Enviando...';
-
-            try {
-                const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email: email })
-                });
-
-                if (response.ok) {
-                    // Success feedback
-                    button.textContent = '✓ Suscrito';
-                    button.style.background = 'linear-gradient(135deg, #10B981 0%, #34D399 100%)';
-
-                    // Reset después de 4 segundos
-                    setTimeout(() => {
-                        button.textContent = originalText;
-                        button.style.background = '';
-                        button.disabled = false;
-                        emailInput.value = '';
-                    }, 4000);
-                } else {
-                    throw new Error('Error en el servidor');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                button.textContent = 'Error';
-                button.style.background = '#EF4444';
-
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = '';
-                    button.disabled = false;
-                }, 3000);
-            }
-        }
-    });
-}
 
 // ===== PARALLAX EFFECT FOR HERO (Subtle) =====
 

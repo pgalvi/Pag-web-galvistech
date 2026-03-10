@@ -54,9 +54,6 @@ const translations = {
         contact_success_reset: "Enviar otro mensaje",
         footer_tagline: "Soluciones digitales de alta gama",
         footer_links_title: "Enlaces Rápidos",
-        footer_newsletter_title: "Mantente Informado",
-        footer_newsletter_placeholder: "tu@email.com",
-        footer_newsletter_btn: "Suscribirse",
         footer_copyright: "© 2026 Galvis Tech Solutions. Todos los derechos reservados.",
         // AI Generator Page
         ai_hero_title: 'Visualiza tu <span class="gradient-text">Sitio Web Ideal</span>',
@@ -131,9 +128,6 @@ const translations = {
         contact_success_reset: "Send another message",
         footer_tagline: "High-end digital solutions",
         footer_links_title: "Quick Links",
-        footer_newsletter_title: "Stay Informed",
-        footer_newsletter_placeholder: "you@email.com",
-        footer_newsletter_btn: "Subscribe",
         footer_copyright: "© 2026 Galvis Tech Solutions. All rights reserved.",
         // AI Generator Page
         ai_hero_title: 'Visualize Your <span class="gradient-text">Ideal Website</span>',
