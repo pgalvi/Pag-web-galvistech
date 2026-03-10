@@ -1,80 +1,104 @@
 <?php
 /**
- * Script de Procesamiento de Contacto para Galvis Tech Solutions
- * Optimizado para Hosting Compartido (Hostinger)
+ * Script de Procesamiento de Contacto - Versión ROBUSTA
+ * Optimizada para Hostinger y Filtros Anti-SPAM
  */
 
-// 1. Configuración de seguridad y CORS (Permitir peticiones del frontend)
+// 1. Cabeceras CORS y Seguridad
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Content-Type: application/json; charset=UTF-8");
 
-// Manejo de petición preflight (OPTIONS)
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     http_response_code(200);
     exit;
 }
 
-// 2. Solo permitir peticiones POST
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(["status" => 405, "message" => "Método no permitido"]);
-    exit;
-}
-
-// 3. Obtener y decodificar el cuerpo de la petición (JSON)
+// 2. Captura de Datos
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
-// 4. Validar campos obligatorios
-if (empty($data['nombre_completo']) || empty($data['email_corporativo']) || empty($data['mensaje'])) {
+if (empty($data['nombre_completo']) || empty($data['email_corporativo'])) {
     http_response_code(400);
-    echo json_encode(["status" => 400, "message" => "Faltan campos obligatorios."]);
+    echo json_encode(["status" => 400, "message" => "Datos incompletos"]);
     exit;
 }
 
-// 5. Configuración del Email
-$to = "contacto@galvistech.com"; // Tu correo de destino
-$subject = "🚀 Nuevo Lead: " . $data['nombre_completo'];
+// 3. Configuración del Email
+$to = "contacto@galvistech.com";
+$subject = "🚀 NUEVO PROSPECTO: " . strip_tags($data['nombre_completo']);
 
-// Extraer datos
+// Datos Sanitizados
 $nombre = strip_tags($data['nombre_completo']);
-$email = filter_var($data['email_corporativo'], FILTER_SANITIZE_EMAIL);
+$email_cliente = filter_var($data['email_corporativo'], FILTER_SANITIZE_EMAIL);
 $proyecto = strip_tags($data['tipo_proyecto'] ?? 'No especificado');
 $presupuesto = strip_tags($data['presupuesto_estimado'] ?? 'No especificado');
-$mensaje = nl2br(strip_tags($data['mensaje']));
+$mensaje_texto = nl2br(strip_tags($data['mensaje']));
 
-// 6. Diseño del Mensaje HTML
+// 4. Construcción del Mensaje HTML (Diseño Premium)
 $message = "
-<div style='font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; padding: 25px; border-radius: 12px;'>
-    <h2 style='color: #007bff; text-align: center; border-bottom: 2px solid #007bff; padding-bottom: 10px;'>Nueva Solicitud de Proyecto</h2>
-    <p><strong>Nombre:</strong> {$nombre}</p>
-    <p><strong>Email:</strong> <a href='mailto:{$email}'>{$email}</a></p>
-    <p><strong>Tipo de Proyecto:</strong> {$proyecto}</p>
-    <p><strong>Presupuesto Estimado:</strong> <span style='background: #e7f3ff; color: #007bff; padding: 3px 8px; border-radius: 4px;'>{$presupuesto}</span></p>
-    <div style='background: #f8f9fa; padding: 15px; border-left: 4px solid #007bff; margin-top: 20px;'>
-        <strong>Mensaje del cliente:</strong><br><br>
-        {$mensaje}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container { font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eeeeee; border-radius: 15px; overflow: hidden; background-color: #ffffff; }
+        .header { background: linear-gradient(135deg, #007bff, #0056b3); padding: 30px; text-align: center; color: white; }
+        .content { padding: 30px; color: #333333; line-height: 1.6; }
+        .footer { background-color: #f8f9fa; padding: 15px; text-align: center; font-size: 11px; color: #888888; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .data-table td { padding: 12px; border-bottom: 1px solid #f0f0f0; }
+        .label { font-weight: bold; color: #007bff; width: 140px; }
+        .quote-box { background: #fcfcfc; border-left: 5px solid #007bff; padding: 20px; border-radius: 5px; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div class='header'>
+            <h1 style='margin:0; font-size: 24px;'>Nueva Solicitud Web</h1>
+        </div>
+        <div class='content'>
+            <p>Se ha recibido una nueva consulta desde el sitio oficial <strong>Galvis Tech Solutions</strong>:</p>
+            <table class='data-table'>
+                <tr><td class='label'>Cliente:</td><td>{$nombre}</td></tr>
+                <tr><td class='label'>Email:</td><td><a href='mailto:{$email_cliente}'>{$email_cliente}</a></td></tr>
+                <tr><td class='label'>Proyecto:</td><td>{$proyecto}</td></tr>
+                <tr><td class='label'>Presupuesto:</td><td><span style='background:#e7f3ff; color:#007bff; padding:4px 10px; border-radius:4px;'>{$presupuesto}</span></td></tr>
+            </table>
+            <div class='quote-box'>
+                <strong>Mensaje del Cliente:</strong><br>
+                {$mensaje_texto}
+            </div>
+        </div>
+        <div class='footer'>
+            Este es un correo técnico enviado automáticamente por Galvis Tech Solutions CRM.
+        </div>
     </div>
-    <hr style='border: 0; border-top: 1px solid #eee; margin-top: 30px;'>
-    <p style='font-size: 11px; color: #999; text-align: center;'>Este correo fue generado desde el formulario de Galvis Tech Solutions.</p>
-</div>
+</body>
+</html>
 ";
 
-// 7. Cabeceras del Email (Importante para que no llegue a SPAM en Hostinger)
+// 5. Cabeceras CRÍTICAS (Evitan SPAM y aseguran entrega en Hostinger)
+$from = "contacto@galvistech.com"; // DEBE ser el email real de tu dominio
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-$headers .= "From: Galvis Tech CRM <contacto@galvistech.com>" . "\r\n"; // El remitente DEBE ser de tu dominio
-$headers .= "Reply-To: {$email}" . "\r\n";
+$headers .= "From: Galvis Tech CRM <" . $from . ">" . "\r\n";
+$headers .= "Reply-To: " . $email_cliente . "\r\n";
+$headers .= "Return-Path: " . $from . "\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
 
-// 8. Envío del Correo
-if (mail($to, $subject, $message, $headers)) {
+// 6. Envío con parámetro adicional -f (Importante en Hostinger/Linux)
+$sent = mail($to, $subject, $message, $headers, "-f" . $from);
+
+// Log de depuración (puedes borrar esto después)
+$log_entry = date("[Y-m-d H:i:s]") . " Intento de envío a {$to}. Resultado: " . ($sent ? "ÉXITO" : "FALLO") . "\n";
+file_put_contents("log_emails.txt", $log_entry, FILE_APPEND);
+
+if ($sent) {
     http_response_code(200);
-    echo json_encode(["status" => 200, "message" => "Correo enviado con éxito"]);
+    echo json_encode(["status" => 200, "message" => "Mensaje procesado correctamente"]);
 } else {
     http_response_code(500);
-    echo json_encode(["status" => 500, "message" => "Error al enviar el correo"]);
+    echo json_encode(["status" => 500, "message" => "Error interno al enviar el correo"]);
 }
 ?>
