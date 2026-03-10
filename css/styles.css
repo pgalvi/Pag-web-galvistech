@@ -50,6 +50,10 @@
     /* 48px */
     --text-6xl: 3.75rem;
     /* 60px */
+    --text-7xl: 4.5rem;
+    /* 72px */
+    --text-8xl: 6rem;
+    /* 96px */
 
     /* Spacing Scale */
     --space-1: 0.25rem;
@@ -216,39 +220,52 @@ a {
 .hero-content {
     position: relative;
     z-index: var(--z-base);
-    max-width: 900px;
+    max-width: 1100px;
     text-align: center;
+    padding: 0 var(--space-6);
 }
 
 .hero-title {
-    font-size: var(--text-4xl);
+    font-size: var(--text-6xl);
     font-weight: 800;
-    margin-bottom: var(--space-6);
-    letter-spacing: -0.02em;
+    margin-bottom: var(--space-8);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
 }
 
 .hero-subtitle {
-    font-size: var(--text-lg);
+    font-size: var(--text-xl);
     color: var(--color-gray-300);
-    margin-bottom: var(--space-10);
+    margin-bottom: var(--space-12);
     font-weight: 400;
-    line-height: 1.7;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-actions {
+    display: flex;
+    gap: var(--space-6);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .cta-button {
     display: inline-flex;
     align-items: center;
-    gap: var(--space-2);
-    padding: var(--space-4) var(--space-8);
-    font-size: var(--text-lg);
+    gap: var(--space-3);
+    padding: var(--space-5) var(--space-10);
+    font-size: var(--text-xl);
     font-weight: 600;
     color: var(--color-white);
     background: linear-gradient(135deg, var(--color-brand-blue-dark) 0%, var(--color-brand-blue-light) 100%);
     border: none;
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-2xl);
     cursor: pointer;
     transition: all var(--transition-base);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
     font-family: var(--font-heading);
 }
 
