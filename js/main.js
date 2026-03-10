@@ -30,7 +30,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        
+
         if (target) {
             target.scrollIntoView({
                 behavior: 'smooth',
@@ -45,27 +45,58 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const newsletterForm = document.getElementById('newsletterForm');
 
 if (newsletterForm) {
-    newsletterForm.addEventListener('submit', (e) => {
+    newsletterForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const emailInput = newsletterForm.querySelector('input[type="email"]');
+        const button = newsletterForm.querySelector('button');
         const email = emailInput.value;
-        
-        // Simple validation
+        const originalText = button.textContent;
+
+        // REEMPLAZA ESTO CON TU ID DE FORMSPREE
+        const FORMSPREE_ID = "mwvrvgnw";
+
         if (email && email.includes('@')) {
-            // Success feedback
-            const button = newsletterForm.querySelector('button');
-            const originalText = button.textContent;
-            
-            button.textContent = '✓ Suscrito';
-            button.style.background = 'linear-gradient(135deg, #10B981 0%, #34D399 100%)';
-            
-            // Reset after 3 seconds
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.style.background = '';
-                emailInput.value = '';
-            }, 3000);
+            // Bloquear botón y mostrar carga
+            button.disabled = true;
+            button.textContent = 'Enviando...';
+
+            try {
+                const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+
+                if (response.ok) {
+                    // Success feedback
+                    button.textContent = '✓ Suscrito';
+                    button.style.background = 'linear-gradient(135deg, #10B981 0%, #34D399 100%)';
+
+                    // Reset después de 4 segundos
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.background = '';
+                        button.disabled = false;
+                        emailInput.value = '';
+                    }, 4000);
+                } else {
+                    throw new Error('Error en el servidor');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                button.textContent = 'Error';
+                button.style.background = '#EF4444';
+
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                    button.disabled = false;
+                }, 3000);
+            }
         }
     });
 }
@@ -79,15 +110,15 @@ window.addEventListener('scroll', () => {
         window.requestAnimationFrame(() => {
             const scrolled = window.pageYOffset;
             const heroBackground = document.querySelector('.hero-background');
-            
+
             if (heroBackground && scrolled < window.innerHeight) {
                 heroBackground.style.transform = `translateY(${scrolled * 0.3}px)`;
                 heroBackground.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
             }
-            
+
             ticking = false;
         });
-        
+
         ticking = true;
     }
 });
@@ -124,7 +155,7 @@ if ('IntersectionObserver' in window) {
             }
         });
     });
-    
+
     // Observe images with data-src attribute
     document.querySelectorAll('img[data-src]').forEach(img => {
         imageObserver.observe(img);
