@@ -140,10 +140,9 @@ document.addEventListener('DOMContentLoaded', function () {
             email: userEmail.value.trim()
         };
 
-        // Enviar datos a Formspree (Lead Capture)
-        const FORMSPREE_ID = "mwvrvgnw";
+        // Enviar datos al Backend Bridge (PHP)
         try {
-            await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+            await fetch('./contacto.php', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -157,9 +156,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     fuente: 'Generador de IA - Galvis Tech'
                 })
             });
-            console.log('✅ Lead enviado a Formspree');
+            console.log('✅ Datos de proyecto enviados al servidor');
         } catch (error) {
-            console.error('❌ Error enviando lead:', error);
+            console.error('❌ Error enviando datos de proyecto:', error);
         }
 
         // Generate sketch

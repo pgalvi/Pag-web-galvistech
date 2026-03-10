@@ -19,25 +19,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
-if (empty($data['nombre_completo']) || empty($data['email_corporativo'])) {
-    http_response_code(400);
-    echo json_encode(["status" => 400, "message" => "Datos incompletos"]);
-    exit;
+// Determinar el origen (Contact Form o AI Generator)
+$is_ai_generator = isset($data['fuente']) && $data['fuente'] === 'Generador de IA - Galvis Tech';
+
+if ($is_ai_generator) {
+    if (empty($data['email'])) {
+        http_response_code(400);
+        echo json_encode(["status" => 400, "message" => "Falta el email del cliente."]);
+        exit;
+    }
+} else {
+    if (empty($data['nombre_completo']) || empty($data['email_corporativo'])) {
+        http_response_code(400);
+        echo json_encode(["status" => 400, "message" => "Datos incompletos"]);
+        exit;
+    }
 }
 
 // 2. Configuración de Formspree
 $formspree_url = "https://formspree.io/f/mwvrvgnw";
 
-// 3. Preparar los datos para Formspree
-$payload = [
-    'Nombre' => strip_tags($data['nombre_completo']),
-    'Email' => filter_var($data['email_corporativo'], FILTER_SANITIZE_EMAIL),
-    'Proyecto' => strip_tags($data['tipo_proyecto'] ?? 'No especificado'),
-    'Presupuesto' => strip_tags($data['presupuesto_estimado'] ?? 'No especificado'),
-    'Mensaje' => strip_tags($data['mensaje']),
-    '_subject' => "🚀 Nuevo Prospecto: " . strip_tags($data['nombre_completo']),
-    '_replyto' => filter_var($data['email_corporativo'], FILTER_SANITIZE_EMAIL)
-];
+// 3. Preparar los datos para Formspree de forma inteligente
+if ($is_ai_generator) {
+    $payload = [
+        'Email' => filter_var($data['email'], FILTER_SANITIZE_EMAIL),
+        'Descripción del Negocio' => strip_tags($data['descripcion_negocio']),
+        'Paleta de Colores' => strip_tags($data['colores']),
+        'Tiene Logo' => strip_tags($data['tiene_logo']),
+        'Formulario' => 'Generador de IA / Visualización',
+        '_subject' => "✨ Nuevo Concepto de IA solicitado por: " . $data['email']
+    ];
+} else {
+    $payload = [
+        'Nombre' => strip_tags($data['nombre_completo']),
+        'Email' => filter_var($data['email_corporativo'], FILTER_SANITIZE_EMAIL),
+        'Proyecto' => strip_tags($data['tipo_proyecto'] ?? 'No especificado'),
+        'Presupuesto' => strip_tags($data['presupuesto_estimado'] ?? 'No especificado'),
+        'Mensaje' => strip_tags($data['mensaje']),
+        '_subject' => "🚀 Nuevo Lead de Contacto: " . strip_tags($data['nombre_completo']),
+        '_replyto' => filter_var($data['email_corporativo'], FILTER_SANITIZE_EMAIL)
+    ];
+}
 
 // 4. Enviar a Formspree usando cURL (Transmisión segura de servidor a servidor)
 $ch = curl_init($formspree_url);
@@ -56,9 +78,9 @@ curl_close($ch);
 // 5. Respuesta al Frontend
 if ($http_code >= 200 && $http_code < 300) {
     http_response_code(200);
-    echo json_encode(["status" => 200, "message" => "¡Mensaje enviado con éxito via Formspree!"]);
+    echo json_encode(["status" => 200, "message" => "¡Mensaje enviado con éxito!"]);
 } else {
     http_response_code(500);
-    echo json_encode(["status" => 500, "message" => "Error en la entrega profesional", "debug" => $response]);
+    echo json_encode(["status" => 500, "message" => "Error en la entrega", "debug" => $response]);
 }
 ?>
